@@ -2,27 +2,41 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, MessageSquare, ShieldCheck, Zap, Laptop, ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-24 border-b border-gray-100">
-      {/* Visual background decorations */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f4f8_1px,transparent_1px),linear-gradient(to_bottom,#f0f4f8_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-      
-      <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_50%)] blur-3xl" />
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28 lg:py-32 border-b border-gray-100">
+      {/* SVG Background */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-it-bg.svg"
+          alt=""
+          fill
+          className="object-cover opacity-80"
+          priority
+        />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center max-w-3xl mx-auto space-y-6 sm:space-y-8">
+      {/* Extra gradient overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/80 z-[1]" />
+
+      {/* Animated floating accent orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl animate-pulse z-[1]" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-400/5 rounded-full blur-3xl animate-pulse z-[1]" style={{ animationDelay: '2s' }} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto space-y-7 sm:space-y-9">
           
           {/* Top Badge */}
-          <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 text-blue-700 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide animate-pulse">
+          <div className="inline-flex items-center space-x-2 bg-blue-50/90 backdrop-blur-sm border border-blue-100 text-blue-700 px-4 py-2 rounded-full text-xs font-bold tracking-wide shadow-sm">
             <Zap className="h-3.5 w-3.5" />
             <span>HỖ TRỢ IT TẬN NƠI NHANH CHÓNG - CHUYÊN NGHIỆP</span>
           </div>
 
           {/* Hero Main Heading */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight drop-shadow-sm">
             Dịch vụ IT tận nơi cho{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               Cá nhân
@@ -34,7 +48,7 @@ export default function Hero() {
           </h1>
 
           {/* Hero Subtitle */}
-          <p className="text-base sm:text-lg lg:text-xl text-gray-500 leading-relaxed font-medium">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
             Giải quyết triệt để mọi sự cố kỹ thuật: Cài Windows, sửa máy tính, lắp đặt camera giám sát, tối ưu Wi-Fi yếu, thiết kế website chuẩn SEO và tư vấn hạ tầng Cloud VPS/Domain.
           </p>
 
@@ -51,23 +65,23 @@ export default function Hero() {
 
             <Link
               href="/services"
-              className="w-full sm:w-auto inline-flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-700 hover:text-gray-900 px-8 py-4 rounded-xl font-bold border border-gray-200 transition-all hover:-translate-y-0.5 text-base"
+              className="w-full sm:w-auto inline-flex items-center justify-center bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-gray-900 px-8 py-4 rounded-xl font-bold border border-gray-200 transition-all hover:-translate-y-0.5 text-base shadow-sm"
             >
               <span>Xem danh sách dịch vụ</span>
             </Link>
           </div>
 
           {/* Trust points */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 sm:pt-12 border-t border-gray-100 max-w-2xl mx-auto text-sm text-gray-500">
-            <div className="flex items-center justify-center space-x-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 sm:pt-14 border-t border-gray-200/60 max-w-2xl mx-auto text-sm text-gray-500">
+            <div className="flex items-center justify-center space-x-2 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-100 shadow-sm">
               <ShieldCheck className="h-5 w-5 text-blue-500" />
               <span className="font-semibold text-gray-700">Kỹ thuật viên uy tín</span>
             </div>
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center space-x-2 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-100 shadow-sm">
               <Laptop className="h-5 w-5 text-blue-500" />
               <span className="font-semibold text-gray-700">Linh kiện chính hãng</span>
             </div>
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center space-x-2 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-100 shadow-sm">
               <MessageSquare className="h-5 w-5 text-blue-500" />
               <span className="font-semibold text-gray-700">Chatbot tư vấn 24/7</span>
             </div>

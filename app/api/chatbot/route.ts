@@ -4,7 +4,7 @@ import { saveAndReplyToChatMessage } from '../../../lib/chatbot';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { session_id, message } = body;
+    const { session_id, message, history } = body;
 
     if (!session_id || !message) {
       return NextResponse.json(
@@ -16,7 +16,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await saveAndReplyToChatMessage(session_id, message);
+    const result = await saveAndReplyToChatMessage(
+      session_id,
+      message,
+      history || []
+    );
 
     return NextResponse.json({
       success: true,

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ShieldAlert, Monitor, ChevronRight } from 'lucide-react';
+import { Menu, X, Monitor, ChevronRight } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,14 +90,6 @@ export default function Header() {
                   )}
                 </Link>
               ))}
-              
-              <Link
-                href="/admin"
-                className="flex items-center space-x-1.5 bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 px-3.5 py-1.5 rounded-full border border-gray-200 hover:border-blue-100 transition-all text-xs font-semibold"
-              >
-                <ShieldAlert className="h-3.5 w-3.5 text-gray-400 group-hover:text-blue-500" />
-                <span>Quản trị</span>
-              </Link>
             </nav>
           ) : (
             <div className="hidden md:flex items-center space-x-4">
@@ -146,15 +138,6 @@ export default function Header() {
                     {link.name}
                   </Link>
                 ))}
-                <div className="border-t border-gray-100 my-2 pt-2">
-                  <Link
-                    href="/admin"
-                    className="flex items-center space-x-2 px-4 py-3 text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg"
-                  >
-                    <ShieldAlert className="h-4 w-4 text-gray-400" />
-                    <span>Hệ thống Quản trị</span>
-                  </Link>
-                </div>
               </>
             ) : (
               <>

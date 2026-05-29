@@ -77,7 +77,7 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="text-xs sm:text-sm text-blue-600 font-bold bg-blue-50 px-4 py-2 rounded-xl flex-shrink-0">
-              Hotline 24/7: 0909.123.456
+              Hotline 24/7: 0898.451.211
             </div>
           </div>
 

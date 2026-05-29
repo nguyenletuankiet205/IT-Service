@@ -65,7 +65,8 @@ export default function ChatbotWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           session_id: sessionId,
-          message: textToSend
+          message: textToSend,
+          history: updatedHistory.slice(-10).map(m => ({ role: m.role, content: m.content }))
         })
       });
 
@@ -78,7 +79,7 @@ export default function ChatbotWidget() {
           ...prev, 
           { 
             role: 'assistant', 
-            content: 'Dạ xin lỗi anh/chị, hệ thống chatbot đang bảo trì đột xuất. Anh/chị có thể liên hệ trực tiếp Hotline 0909.123.456 để kỹ thuật viên hỗ trợ ngay ạ!' 
+            content: 'Dạ xin lỗi anh/chị, hệ thống chatbot đang bảo trì đột xuất. Anh/chị có thể liên hệ trực tiếp Hotline 0898.451.211 để kỹ thuật viên hỗ trợ ngay ạ!' 
           }
         ]);
       }

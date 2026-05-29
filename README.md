@@ -5,7 +5,7 @@ Website đặt lịch dịch vụ IT tích hợp chatbot tư vấn — **Next.js
 ## Tính năng
 
 - Trang công khai tiếng Việt: dịch vụ, bảng giá, đặt lịch, liên hệ/lead, chatbot
-- Dashboard admin: lịch hẹn, khách hàng, dịch vụ, lịch sử chat
+- Dashboard admin: lịch hẹn, khách hàng, dịch vụ
 - **Demo mode**: chạy đầy đủ UI khi chưa có biến môi trường Supabase
 - **Production mode**: Supabase Auth + RLS + API bảo vệ admin
 
@@ -51,6 +51,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 # Khuyến nghị production — CHỈ dùng server-side (API routes, middleware)
 # Không import vào component client ('use client')
 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# Tùy chọn — Gemini AI chatbot (server-side only)
+# Nếu không đặt, chatbot sẽ dùng chế độ rule-based tự động
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 > Không commit `.env.local`. Không bao giờ đặt `SUPABASE_SERVICE_ROLE_KEY` vào biến `NEXT_PUBLIC_*`.
@@ -157,7 +161,7 @@ Server dùng `SUPABASE_SERVICE_ROLE_KEY` để đọc/ghi dashboard sau khi xác
 | `/admin/appointments` | Lịch hẹn |
 | `/admin/customers` | Khách hàng & lead |
 | `/admin/services` | Dịch vụ |
-| `/admin/chats` | Chatbot |
+| `/admin/chats` | Chatbot (ẩn khỏi sidebar) |
 
 ### API công khai
 
@@ -177,7 +181,7 @@ Server dùng `SUPABASE_SERVICE_ROLE_KEY` để đọc/ghi dashboard sau khi xác
 ## Deploy Vercel
 
 1. Push GitHub → Import Vercel  
-2. Environment Variables: 3 biến Supabase  
+2. Environment Variables: 3 biến Supabase + `GEMINI_API_KEY` (tùy chọn cho AI chatbot)  
 3. Deploy  
 4. (Tuỳ chọn) Custom domain + Cloudflare DNS/SSL
 
@@ -185,6 +189,6 @@ Server dùng `SUPABASE_SERVICE_ROLE_KEY` để đọc/ghi dashboard sau khi xác
 
 ## Công nghệ
 
-Next.js 16 · React 19 · Tailwind 4 · Supabase · Zod · Lucide
+Next.js 16 · React 19 · Tailwind 4 · Supabase · Zod · Lucide · Gemini AI
 
 Chi tiết nghiệp vụ: [`master.md`](./master.md)

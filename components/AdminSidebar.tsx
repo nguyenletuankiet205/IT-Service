@@ -7,7 +7,7 @@ import {
   LayoutDashboard, 
   Calendar, 
   Settings, 
-  MessageSquare, 
+  
   LogOut, 
   ArrowLeft,
   Monitor,
@@ -23,7 +23,6 @@ export default function AdminSidebar() {
     { name: 'Lịch đặt hẹn', href: '/admin/appointments', icon: Calendar },
     { name: 'Khách hàng & Lead', href: '/admin/customers', icon: UserCheck },
     { name: 'Quản lý Dịch vụ', href: '/admin/services', icon: Settings },
-    { name: 'Lịch sử Chatbot', href: '/admin/chats', icon: MessageSquare },
   ];
 
   const handleLogout = async () => {

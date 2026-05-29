@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 700" fill="none">
+  <defs>
+    <radialGradient id="glow1" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="80%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="20%" cy="70%" r="35%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.03"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#e2e8f0" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="1" fill="#cbd5e1" fill-opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <!-- Base -->
+  <rect width="1440" height="700" fill="white"/>
+
+  <!-- Grid background -->
+  <rect width="1440" height="700" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Dot pattern overlay -->
+  <rect width="1440" height="700" fill="url(#dots)" opacity="0.3"/>
+
+  <!-- Gradient glows -->
+  <rect width="1440" height="700" fill="url(#glow1)"/>
+  <rect width="1440" height="700" fill="url(#glow2)"/>
+  <rect width="1440" height="700" fill="url(#glow3)"/>
+
+  <!-- Decorative circuit/tech lines -->
+  <g stroke="url(#lineGrad)" stroke-width="1.5" fill="none" opacity="0.5">
+    <!-- Horizontal lines -->
+    <path d="M0 150 H 400 Q 420 150 420 170 V 250"/>
+    <path d="M1440 200 H 1100 Q 1080 200 1080 220 V 320"/>
+    <path d="M0 450 H 300 Q 320 450 320 430 V 350"/>
+    <path d="M1440 500 H 1200 Q 1180 500 1180 480 V 400"/>
+
+    <!-- Diagonal accent lines -->
+    <path d="M100 0 L 250 150" stroke-dasharray="8 6"/>
+    <path d="M1340 0 L 1200 140" stroke-dasharray="8 6"/>
+    <path d="M200 700 L 350 550" stroke-dasharray="8 6"/>
+    <path d="M1250 700 L 1100 550" stroke-dasharray="8 6"/>
+  </g>
+
+  <!-- Circuit nodes -->
+  <g fill="#3b82f6" opacity="0.15">
+    <circle cx="420" cy="250" r="5"/>
+    <circle cx="1080" cy="320" r="5"/>
+    <circle cx="320" cy="350" r="5"/>
+    <circle cx="1180" cy="400" r="5"/>
+    <circle cx="250" cy="150" r="4"/>
+    <circle cx="1200" cy="140" r="4"/>
+    <circle cx="350" cy="550" r="4"/>
+    <circle cx="1100" cy="550" r="4"/>
+  </g>
+
+  <!-- Floating geometric shapes -->
+  <g opacity="0.06">
+    <rect x="120" y="100" width="60" height="60" rx="12" stroke="#3b82f6" stroke-width="2" fill="none" transform="rotate(15 150 130)"/>
+    <rect x="1280" y="120" width="50" height="50" rx="10" stroke="#6366f1" stroke-width="2" fill="none" transform="rotate(-10 1305 145)"/>
+    <circle cx="180" cy="500" r="30" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
+    <circle cx="1300" cy="480" r="25" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+    <polygon points="720,50 740,90 700,90" stroke="#6366f1" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Subtle hexagon pattern for tech feel -->
+  <g stroke="#94a3b8" stroke-width="0.5" fill="none" opacity="0.08">
+    <polygon points="80,300 110,283 140,300 140,334 110,351 80,334"/>
+    <polygon points="1300,250 1330,233 1360,250 1360,284 1330,301 1300,284"/>
+    <polygon points="700,600 730,583 760,600 760,634 730,651 700,634"/>
+  </g>
+
+  <!-- Fade edges -->
+  <rect width="1440" height="700" fill="url(#fadeEdge)" opacity="0"/>
+  <defs>
+    <radialGradient id="fadeEdge" cx="50%" cy="50%" r="70%">
+      <stop offset="70%" stop-color="white" stop-opacity="0"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0.8"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="700" fill="url(#fadeEdge)"/>
+</svg>

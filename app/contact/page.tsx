@@ -42,14 +42,14 @@ export default function ContactPage() {
                   </li>
                   <li className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-blue-500 flex-shrink-0" />
-                    <a href="tel:0909123456" className="font-bold text-gray-900 hover:text-blue-600">
-                      0909.123.456
+                    <a href="tel:0898451211" className="font-bold text-gray-900 hover:text-blue-600">
+                      0898.451.211
                     </a>
                   </li>
                   <li className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 text-blue-500 flex-shrink-0" />
-                    <a href="mailto:support@techcare.vn" className="text-gray-600 hover:text-blue-600">
-                      support@techcare.vn
+                    <a href="mailto:nguyenletuankiet.qng@gmail.com" className="text-gray-600 hover:text-blue-600">
+                      nguyenletuankiet.qng@gmail.com
                     </a>
                   </li>
                 </ul>
