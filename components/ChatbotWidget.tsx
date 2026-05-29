@@ -33,7 +33,6 @@ export default function ChatbotWidget() {
     }
   ]);
 
-  // Scroll to bottom when history updates or widget is opened
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -53,7 +52,6 @@ export default function ChatbotWidget() {
   const handleSendMessage = async (textToSend: string) => {
     if (!textToSend.trim()) return;
 
-    // Add user message to history
     const updatedHistory = [...history, { role: 'user', content: textToSend } as ChatMessage];
     setHistory(updatedHistory);
     setMessage('');
@@ -73,23 +71,24 @@ export default function ChatbotWidget() {
       const data = await response.json();
 
       if (response.ok && data.reply) {
-        setHistory((prev) => [...prev, { role: 'assistant', content: data.reply }]);
+        setHistory(prev => [...prev, { role: 'assistant', content: data.reply }]);
       } else {
-        setHistory((prev) => [
-          ...prev, 
-          { 
-            role: 'assistant', 
-            content: 'Dạ xin lỗi anh/chị, hệ thống chatbot đang bảo trì đột xuất. Anh/chị có thể liên hệ trực tiếp Hotline 0898.451.211 để kỹ thuật viên hỗ trợ ngay ạ!' 
+        setHistory(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content:
+              'Dạ xin lỗi anh/chị, hệ thống chatbot đang bảo trì đột xuất. Anh/chị có thể liên hệ trực tiếp Hotline 0898.451.211 để kỹ thuật viên hỗ trợ ngay ạ!'
           }
         ]);
       }
     } catch (err) {
       console.error('Error sending chat message:', err);
-      setHistory((prev) => [
+      setHistory(prev => [
         ...prev,
-        { 
-          role: 'assistant', 
-          content: 'Kết nối mạng gián đoạn. Anh/chị vui lòng thử lại hoặc nhấn nút Đặt Lịch để gửi yêu cầu nhé!' 
+        {
+          role: 'assistant',
+          content: 'Kết nối mạng gián đoạn. Anh/chị vui lòng thử lại hoặc nhấn nút Đặt Lịch để gửi yêu cầu nhé!'
         }
       ]);
     } finally {
@@ -119,51 +118,51 @@ export default function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
-      
-      {/* Chat Window */}
+    <div className="fixed inset-x-4 bottom-4 z-[9999] flex flex-col items-end sm:inset-x-auto sm:right-5 sm:bottom-5">
       {isOpen && (
-        <div className="bg-white w-[340px] sm:w-[380px] h-[500px] sm:h-[550px] rounded-3xl border border-gray-200 shadow-2xl flex flex-col mb-4 overflow-hidden transition-all duration-300 transform scale-100 origin-bottom-right">
-          
+        <div className="mb-3 flex h-[430px] max-h-[calc(100vh-180px)] w-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl transition-all duration-300 origin-bottom-right sm:h-[460px] sm:w-[380px] sm:max-w-[calc(100vw-2rem)]">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 flex justify-between items-center text-white">
+          <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white">
             <div className="flex items-center space-x-2.5">
-              <div className="bg-white/20 p-1.5 rounded-xl">
+              <div className="rounded-xl bg-white/20 p-1.5">
                 <Bot className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-sm sm:text-base leading-none">Trợ lý TechCare</h3>
-                <span className="text-[10px] text-blue-100 font-semibold flex items-center mt-1">
-                  <span className="h-1.5 w-1.5 bg-emerald-400 rounded-full mr-1.5 animate-pulse" />
+                <h3 className="text-sm font-extrabold leading-none sm:text-base">Trợ lý TechCare</h3>
+                <span className="mt-1 flex items-center text-[10px] font-semibold text-blue-100">
+                  <span className="mr-1.5 h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                   Hỗ trợ trực tuyến 24/7
                 </span>
               </div>
             </div>
 
             <div className="flex items-center space-x-1.5">
-              <button 
-                onClick={resetChat} 
-                className="hover:bg-white/20 p-1.5 rounded-lg transition-colors"
+              <button
+                onClick={resetChat}
+                className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
                 title="Tạo hội thoại mới"
+                type="button"
               >
                 <RefreshCw className="h-4 w-4 text-white" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="hover:bg-white/20 p-1.5 rounded-lg transition-colors"
+                className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
+                type="button"
+                aria-label="Đóng chatbot"
               >
-                <X className="h-4.5 w-4.5 text-white" />
+                <X className="h-4 w-4 text-white" />
               </button>
             </div>
           </div>
 
           {/* Book CTA Banner */}
-          <div className="bg-blue-50 border-b border-blue-100 px-4 py-2 flex justify-between items-center text-xs">
-            <span className="text-blue-800 font-bold">Đặt lịch nhanh không cần chờ đợi:</span>
+          <div className="flex items-center justify-between gap-2 border-b border-blue-100 bg-blue-50 px-4 py-2 text-xs">
+            <span className="font-bold text-blue-800">Đặt lịch nhanh:</span>
             <Link
               href="/booking"
               onClick={() => setIsOpen(false)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded-lg flex items-center space-x-1 shadow-sm transition-colors"
+              className="flex items-center space-x-1 rounded-lg bg-blue-600 px-3 py-1 font-bold text-white shadow-sm transition-colors hover:bg-blue-700"
             >
               <Calendar className="h-3.5 w-3.5" />
               <span>Đặt lịch ngay</span>
@@ -171,60 +170,61 @@ export default function ChatbotWidget() {
           </div>
 
           {/* Message Area */}
-          <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-gray-50/50">
+          <div className="min-h-0 flex-1 space-y-4 overflow-y-auto bg-gray-50/50 p-4">
             {history.map((msg, index) => (
-              <div
-                key={index}
-                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div className={`flex items-start space-x-2 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
-                  
-                  {/* Avatar */}
-                  <div className={`p-1.5 rounded-lg text-white flex-shrink-0 ${
-                    msg.role === 'user' ? 'bg-blue-500' : 'bg-gray-700'
-                  }`}>
+              <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div
+                  className={`flex max-w-[85%] items-start space-x-2 ${
+                    msg.role === 'user' ? 'flex-row-reverse space-x-reverse' : 'flex-row'
+                  }`}
+                >
+                  <div
+                    className={`flex-shrink-0 rounded-lg p-1.5 text-white ${
+                      msg.role === 'user' ? 'bg-blue-500' : 'bg-gray-700'
+                    }`}
+                  >
                     {msg.role === 'user' ? <User className="h-3 w-3" /> : <Bot className="h-3 w-3" />}
                   </div>
 
-                  {/* Bubble Content */}
-                  <div className={`p-3 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line shadow-sm border ${
-                    msg.role === 'user'
-                      ? 'bg-blue-600 border-blue-600 text-white rounded-tr-none'
-                      : 'bg-white border-gray-250 text-gray-800 rounded-tl-none'
-                  }`}>
+                  <div
+                    className={`whitespace-pre-line rounded-2xl border p-3 text-xs leading-relaxed shadow-sm sm:text-sm ${
+                      msg.role === 'user'
+                        ? 'rounded-tr-none border-blue-600 bg-blue-600 text-white'
+                        : 'rounded-tl-none border-gray-200 bg-white text-gray-800'
+                    }`}
+                  >
                     {msg.content}
                   </div>
-
                 </div>
               </div>
             ))}
 
-            {/* Typing Loader */}
             {loading && (
               <div className="flex justify-start">
-                <div className="flex items-start space-x-2 max-w-[85%]">
-                  <div className="p-1.5 rounded-lg bg-gray-700 text-white">
+                <div className="flex max-w-[85%] items-start space-x-2">
+                  <div className="rounded-lg bg-gray-700 p-1.5 text-white">
                     <Bot className="h-3 w-3" />
                   </div>
-                  <div className="p-3 bg-white border border-gray-250 rounded-2xl rounded-tl-none shadow-sm flex items-center space-x-1">
-                    <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="flex items-center space-x-1 rounded-2xl rounded-tl-none border border-gray-200 bg-white p-3 shadow-sm">
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '0ms' }} />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '150ms' }} />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               </div>
             )}
-            
+
             <div ref={chatEndRef} />
           </div>
 
-          {/* Quick Suggestions list */}
-          <div className="px-3 py-2 bg-white border-t border-gray-100 flex items-center space-x-1.5 overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-200">
+          {/* Quick Suggestions */}
+          <div className="flex items-center space-x-1.5 overflow-x-auto whitespace-nowrap border-t border-gray-100 bg-white px-3 py-2">
             {quickSuggestions.map((sug, idx) => (
               <button
                 key={idx}
                 onClick={() => handleSuggestionClick(sug)}
-                className="bg-gray-100 hover:bg-blue-50 text-gray-700 hover:text-blue-600 border border-gray-200 hover:border-blue-100 rounded-full px-3 py-1.5 text-xs font-bold transition-all cursor-pointer flex-shrink-0"
+                className="flex-shrink-0 cursor-pointer rounded-full border border-gray-200 bg-gray-100 px-3 py-1.5 text-xs font-bold text-gray-700 transition-all hover:border-blue-100 hover:bg-blue-50 hover:text-blue-600"
+                type="button"
               >
                 {sug}
               </button>
@@ -232,35 +232,35 @@ export default function ChatbotWidget() {
           </div>
 
           {/* Input Form */}
-          <form onSubmit={handleFormSubmit} className="p-3 border-t border-gray-200 bg-white flex items-center space-x-2">
+          <form onSubmit={handleFormSubmit} className="flex items-center space-x-2 border-t border-gray-200 bg-white p-3">
             <input
               type="text"
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={e => setMessage(e.target.value)}
               placeholder="Nhập tin nhắn tư vấn..."
-              className="flex-grow px-4 py-2.5 rounded-xl border border-gray-250 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-xs sm:text-sm text-gray-800"
+              className="flex-grow rounded-xl border border-gray-200 px-4 py-2.5 text-xs text-gray-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
             />
             <button
               type="submit"
               disabled={!message.trim() || loading}
-              className="bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-xl transition-all shadow-md shadow-blue-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="rounded-xl bg-blue-600 p-2.5 text-white shadow-md shadow-blue-100 transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+              aria-label="Gửi tin nhắn"
             >
               <Send className="h-4 w-4" />
             </button>
           </form>
-
         </div>
       )}
 
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-blue-600 hover:bg-blue-700 text-white p-4 sm:p-4.5 rounded-full shadow-2xl hover:shadow-blue-300 hover:scale-105 transition-all flex items-center justify-center border-2 border-white"
+        className="flex items-center justify-center rounded-full border-2 border-white bg-blue-600 p-4 text-white shadow-2xl transition-all hover:scale-105 hover:bg-blue-700 hover:shadow-blue-300"
         aria-label="Mở khung tư vấn"
+        type="button"
       >
         {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6 animate-pulse" />}
       </button>
-
     </div>
   );
 }
